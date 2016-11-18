@@ -1,0 +1,207 @@
+/** 
+ * Copyright (C) 2012  Sergio Martín Moreno
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+/* Área del div de navegación. */
+#logo {
+    float:left;
+    font-size: 20pt;
+    font-weight: bold;
+    font-family: monospace;
+    margin-top:12px;
+    margin-right:18px;
+    border: 1px solid #CCC;
+    background-color: #efefef;/*#ffffcc;*/
+    color:#000000;/*#F0AA41;*/
+    border-radius:7px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+#logoVistaPrevia {
+    float:left;
+    font-size: 20pt;
+    font-weight: bold;
+    font-family: monospace;
+    margin-top:12px;
+    margin-right:18px;
+    border: 6px solid #CCC;
+    background-color: #000000;/*#ffffcc;*/
+    color:#efefef;/*#F0AA41;*/
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.btCargaGuarda {
+    float:right;
+    font-size: 20pt;
+    margin-top:12px;
+    margin-right:18px;
+}
+
+a.falsoBoton {
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+    width:110px;
+    height:30px;
+    background-color: #000000;/*#F0AA41;*/
+    color: #efefef;/*#ffffcc;*/
+    border-top: 7px solid #000000; /*border: none;*/
+    border-bottom: 6.5px solid #000000; /*border: none;*/
+    border-right: 20px solid #000000; /*border: none;*/
+    border-left: 20px solid #000000; /*border: none;*/
+    border-radius:7px;
+    text-decoration:none;
+    cursor:pointer; /* Hacemos que el cursor tenga forma de enlace, para que el usuario clique ahí. */
+}
+
+/* Estilo para los botones guays (no los de herramientas)*/
+input.btStyle {
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+    width:110px;
+    height:30px;
+    background-color: #000000;/*#F0AA41;*/
+    color: #efefef;/*#ffffcc;*/
+    border: none;
+    border-radius:7px;
+    cursor:pointer; /* Hacemos que el cursor tenga forma de enlace, para que el usuario clique ahí. */
+}
+
+input.btStyle2Action {
+    font-size: 11pt;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+    width:110px;
+    height:30px;
+    background-color: #000000;/*#F0AA41;*/
+    color: #efefef;/*#ffffcc;*/
+    border: none;
+    border-radius:7px;
+    cursor:pointer; /* Hacemos que el cursor tenga forma de enlace, para que el usuario clique ahí. */
+    float:right;
+    margin-right:5px;
+}
+
+input.textStyle {
+    width:99%;
+}
+
+.floatstop { /* Parando el devastador efecto del float. */
+    clear:both;
+}
+
+.colorSelectorClass { /* Clase para el selector de colores de secciones como "Subrayado color" o "Citar". */
+    font-size: 8pt;
+    border: 1px solid #CCC;
+    cursor:pointer;
+}
+
+#idContenidoTextoXtender{ /*Lo hacemos por porcentajes y así sólo hay que cambiar el height de contentXtender y el de toolsXtender*/
+    width: 99.7%;
+    height: 99%;
+}
+
+#contentXtender {
+    width: 65%;
+    height: 642px; /* CAMBIAR SI HAY QUE CAMBIAR DE NAVEGADOR O MONITOR. ANTES ERA DE 492px*/
+    padding: 5px;
+    float:left;
+    border: 1px solid #CCC;
+    overflow: auto; /* Activar scroll */
+}
+
+#toolsXtender {
+    width: 32%;
+    height: 642px; /* CAMBIAR SI HAY QUE CAMBIAR DE NAVEGADOR O MONITOR. ANTES ERA DE 492px*/
+    margin-left: 5px;
+    padding: 5px;
+    float:left;
+    border: 1px solid #CCC;
+    overflow: auto; /* Activar scroll */
+}
+
+#contentXtenderVistaPrevia {
+    width: 65%;
+    height: 656px; /* CAMBIAR SI HAY QUE CAMBIAR DE NAVEGADOR O MONITOR. ANTES ERA DE 496px*/
+    padding: 5px;
+    float:left;
+    border: 1px solid #CCC;
+    overflow: auto; /* Activar scroll */
+    font-family: Helvetica, serif;
+    font-size:11pt;
+}
+
+#toolsXtenderVistaPrevia {
+    width: 32%;
+    height: 656px; /* CAMBIAR SI HAY QUE CAMBIAR DE NAVEGADOR O MONITOR. ANTES ERA DE 496px*/
+    margin-left: 5px;
+    padding: 5px;
+    float:left;
+    border: 1px solid #CCC;
+    overflow: auto; /* Activar scroll */
+}
+
+.PrevToolsEske {
+    width: 95%;
+    height: 80px;
+    margin-left: 5px;
+    padding: 5px;
+    /*float:left;*/
+    border: 1px solid #CCC;
+    overflow: auto; /* Activar scroll */
+}
+
+.PrevToolsEskeNoDisplay {
+    width: 95%;
+    height: 80px;
+    margin-left: 5px;
+    padding: 5px;
+    border: 1px solid #CCC;
+    overflow: auto; /* Activar scroll */
+    display:none; /* Como predetederminada opción no se mostrará este div. */
+}
+
+textarea.SectionArea {
+    margin-left:9px;
+    width: 95%;
+    height: 100px;
+}
+
+div.Section {
+    font-size: 14pt;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+    padding:3px;
+    border: 1px solid #CCC;
+    background-color: #000000;/*#F0AA41;*/
+    cursor:pointer; /* Hacemos que el cursor tenga forma de enlace, para que el usuario clique ahí. */
+    color: #efefef;/*#ffffcc;*/
+}
+
+#PrevToolsVP {
+    width: 95%;
+    height: 80px;
+    margin-left: 5px;
+    padding: 5px;
+    /*float:left;*/
+    border: 1px solid #CCC;
+    overflow: auto; /* Activar scroll */
+}
+

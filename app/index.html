@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtmlll/DTD/xhtmlll.dtd">
+    
+<!--Copyright (C) 2012  Sergio Martín Moreno.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>BlogXtender</title>
+    <!-- Javascripts -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.wrapSelection.js"></script> <!-- Plugin de jQuery que uso para lo de las selecciones. -->
+    <script type="text/javascript" src="js/colorpicker.js"></script><!-- Plugin de jQyery que uso para cambiar de color. -->
+    <script type="text/javascript" src="js/shortcut.js"></script><!-- Plugin de jQyery que uso para los atajos de teclado. Documentación: http://www.openjs.com/scripts/events/keyboard_shortcuts/ -->
+    <script type="text/javascript" src="js/xtender.js"></script>
+    <script type="text/javascript" src="js/xtenderEdicion.js"></script>
+    <script type="text/javascript" src="js/xtenderHerramientas.js"></script>
+    <script type="text/javascript" src="js/xtenderListaImagenes.js"></script>
+    <script type="text/javascript" src="js/xtenderTablaSubrayadoCitaFraseImagen.js"></script>
+    <script type="text/javascript" src="js/xtenderZonaNotas.js"></script>
+    <script type="text/javascript" src="js/xtenderShortcut.js"></script> <!-- En este js se encuentran los manejadores en los que uso shortcut.js -->
+    <script type="text/javascript" src="js/xtenderVistaPrevia.js"></script> 
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript"></script>-->
+    <!-- Hojas de estilo -->
+    <link href="css/Xtender.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" /><!-- css necesario para usar el plugin de jQuery colorpicker-->
+</head>
+
+<body>
+    <!-- Zona superior. -->
+    <div id="logo">BlogXtender</div>
+    <div id="nav1" class="btCargaGuarda">
+        <input id="btExportar" type="button" class="btStyle" value="Export" onclick="showExportarDialog();" />
+        <a id="btVistaPrevia" class="falsoBoton" href="#logoVistaPrevia">Preview</a>
+        <!--<input id="btVistaPrevia" type="button" class="btStyle" value="Vista Previa" onclick="showVistaPreviaDialog();" />-->
+        <!--<input id="btExportarBlogger" type="button" class="btStyle" value="Exporta Blogger" onclick="enviaABlogger();" /> <!-- Para esto habrá que usar python, la api de blogger y django. -->
+    </div>
+    <div class="floatstop"> </div><br />
+    
+    <!-- Zona del medio. -->
+    
+    <div id="contentXtender"><!--Todo el contenido dentro del textarea se añadirá como html--><textarea id="idContenidoTextoXtender" name="contenidoTextoXtender"><div style="text-align:justify;">
+
+</div></textarea></div><!-- Zona izquierda con el contenido.-->
+    
+    <div id="toolsXtender"> <!-- Zona derecha. -->
+        <!-- Sección edición. -->
+        <div class="Section" onclick="toogleDiv('idEdicion');">&raquo; EDITION</div><br />
+        <div id="idEdicion" style="display:none;">
+            <input id="btComillas" type="button" value="&#171; &#187;" onclick="insertComillas();" />
+            <input id="btEspacio" type="button" title="WordPress Space" value="&#38;nbsp;" onclick="insertEspacioWP();" />
+            <input id="btRayaLarga" type="button" value="&#8212;" onclick="insertRayaLarga();" />
+            <input id="btCopyRight" type="button" value="&#169;" onclick="insertCopyRight();" />
+            <input id="btMarcaRegistrada" type="button" value="&#174;" onclick="insertMarcaRegistrada();" />
+            <input id="btMarcaRegistradaTM" type="button" value="&#8482;" onclick="insertMarcaRegistradaTM();" />
+            <input id="btNotaMusical1" type="button" value="&#9834;" onclick="insertNotaMusical1();" />
+            <input id="btNotaMusical2" type="button" value="&#9835;" onclick="insertNotaMusical2();" />
+            <hr />
+            <input id="btMAY" type="button" title="Put select words to UPPER CASE" value="CAP" onclick="toMayusculas()" />
+            <input id="btmin" type="button" title="Put select words to lower case" value="low" onclick="toMinusculas()" />
+            <hr />
+            <input id="btBold" type="button" style="font-weight: bold;" value="B" onclick="insertBold();" />
+            <input id="btItalic" type="button" style="font-style: oblique;" value="I" onclick="insertItalic();" />
+            <input id="btUnderline" type="button" style="text-decoration: underline;" value="U" onclick="insertUnderline();" />
+            <input id="btSobreSubrayado" type="button" style="text-decoration: overline;" value="O" onclick="insertSobreSubrayado();" />
+            <input id="btTachado" type="button" style="text-decoration: line-through;" value="ABC" onclick="insertTachado();" />
+            <input id="btSuperindice" type="button" value="super" onclick="insertSuperindice();" /> <!-- Usará style="vertical-align: super;" para el superindice -->
+            <input id="btSubindice" type="button" value="sub" onclick="insertSubindice();" /> <!-- Usará style="vertical-align: sub;" para el superindice -->
+            <hr />
+            <input id="btEncabezadoH1" type="button" value="<h1>" onclick="insertEncabezadoH1();" />
+            <input id="btEncabezadoH2" type="button" value="<h2>" onclick="insertEncabezadoH2();" />
+            <input id="btEncabezadoH3" type="button" value="<h3>" onclick="insertEncabezadoH3();" />
+            <hr />
+            <span style="margin-left:3px;">Tabulación: <input id="txHtmlTab" type="text" style="margin-left:3px;width:15pt;" value="0"/> pt.</span>
+            <input id="btParrafo" type="button" value="<p>" onclick="insertParrafo();" /><br /><br />
+            <input id="btQuote" type="button" value='Quote' onclick="insertQuote();" /> <!-- Bloquote muy básico. -->
+            <input id="btDivIzq" type="button" value="Left Alig" onclick="insertDivIzq();" />
+            <input id="btDivDch" type="button" value="Right Alig" onclick="insertDivDch();" />
+            <input id="btDivCent" type="button" value="Center Alig" onclick="insertDivCent();" />
+            <input id="btDivJust" type="button" value="Just Alig" onclick="insertDivJust();" />
+            <input id="btDosColumnas" type="button" value="2 Columns" onclick="insert2Columnas();" />
+            <hr />
+            <input id="txHtmlLink" type="text" value="http://" />
+            <input id="btGetLink" type="button" value="Link" onclick="insertLink();" />
+            <hr />
+            <input id="btElementList" type="button" value="<li>" onclick="insertElementList();" />
+            <input id="btNoOrderList" type="button" value="<ul>" onclick="insertNoOrderList();" />
+            <input id="btOrderList" type="button" value="<ol>" onclick="insertOrderList();" />
+            <input id="btOrderList" type="button" value="'-' &rarr; '<ul>'" onclick="insertNoOrderListTransf();" />
+            <input id="btOrderList" type="button" value="'#-' &rarr; '<ol>'" onclick="insertOrderListTransf();" />
+        <br /><br /></div>
+        <!-- Sección Herramientas (reemplazar/buscar y atajos personalizados). -->
+        <div class="Section" onclick="toogleDiv('idHerramientas');">&raquo; TOOLS</div><br />
+        <div id="idHerramientas" style="display:none;">
+            <input style="margin-left:3px;" id="txABuscar" type="text" /><br />
+            <input style="margin-left:3px;" id="txReemplaza" type="text" />
+            <input id="btReemplazaBuscar" type="button" value="Replace/Search" onclick="reemplazaBuscaYSelecciona($('#txABuscar')[0].value, $('#txReemplaza')[0].value)" /><br />
+            <hr />
+            <input id="btPDFToTxt" type="button" value="Format a Copy&paste text from PDF" onclick="fromPDFFormatToTextFormat()" /><br />
+            <hr />
+            <input type="checkbox" id="idPasarABr" /> Replace all end of lines for labels &lt;br /&gt;.
+        <br /><br /></div>
+        <!-- Sección Tabla. -->
+        <div class="Section" onclick="toogleDiv('idTabla');">&raquo; TABLE</div><br />
+        <div id="idTabla" style="display:none;">
+            <!-- Sólo pedirá el número de filas, el de columnas y el encabezado de la tabla lo introduce a parte (es una fila a parte del número de filas). E inmediatamente tras pulsar aceptar escupirá el código de la tabla, formateado de forma que uno no pueda confundirse (procurar que la tabla tenga un estilo guay, con filas alternardo de color blanco con gris pastel muy claro pero que se note; no voy a usar tablas de otros colores, es más puede que no use tablas para el blog en la vida) -->
+            <span style="margin-left:3px;">Number of rows: <input style="margin-left:46px;" id="txNumFilas"  type="text" /></span><br />
+            <span style="margin-left:3px;">Number of columns: <input style="margin-left:23px;" id="txNumColumnas"  type="text" /></span><br /><br />
+            <input id="btCreateTable" type="button" class="btStyle2Action" value="OK" onclick="insertTable($('#txNumFilas')[0].value, $('#txNumColumnas')[0].value);" />
+            <div class="floatstop"> </div>
+        <br /></div>
+        <!-- Sección subrayado color. -->
+        <div class="Section" onclick="toogleDiv('idSubrayadoColor');">&raquo; COLOR UNDERLINE</div><br />
+        <div id="idSubrayadoColor" style="display:none;">
+            <span style="margin-left:3px;">Underline color: <input type="text" id="txColorSubrayado" name="colorSubrayado" style="margin-left:1px;" value='fffda5' disabled/> <input id="btSeleccionarColor" type="button" class="btStyle" value="Browse..." /><!--Inicio plugin de selección del color, con pre creo el nuevo bloque donde irá --><pre>
+<script type="text/javascript">$('#txColorSubrayado, #btSeleccionarColor').ColorPicker({
+            onSubmit: function(hsb, hex, rgb, el) {
+	            $('#txColorSubrayado').val(hex);
+	            $('#txColorSubrayado').ColorPickerHide();
+            },
+            onBeforeShow: function () {
+	            $(this).ColorPickerSetColor(this.value);
+            }
+        })
+        .bind('keyup', function(){
+            $(this).ColorPickerSetColor(this.value);
+        });
+
+</script></pre><!-- Fin del plugin de selección del color, con pre creo el nuevo bloque donde irá--></span>
+        <!-- Coloco colores predeterminados. -->
+        <span style="margin-left:116px;">
+            <span style="background-color: #FFFDA5;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'fffda5')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFF4CB;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'fff4cb')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFCFA1;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'ffcfa1')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E3FFD0;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'e3ffd0')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFD0DF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'ffd0df')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E2E7FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'e2e7ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FDFFE2;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'fdffe2')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #F8E2FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayado', 'f8e2ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span><br /><br />
+        <!-- Botón de aceptar -->
+        <input id="btUseSubrayado" type="button" class="btStyle2Action" style="margin-right:22px"; value="OK" onclick="insertSubrayado($('#txColorSubrayado')[0].value);" />
+        <div class="floatstop"> </div>
+        <br /></div>
+        <!-- Sección citar. -->
+        <div class="Section" onclick="toogleDiv('idCitar');">&raquo; QUOTE</div><br />
+        <div id="idCitar" style="display:none;">
+            <span style="margin-left:3px;">Quote type: <input type="radio" name="citaTipo" value="citaTipoBloque"  checked/>In block. <input type="radio" name="citaTipo" value="citaTipoLinea" />In line. </span><br /><br />
+            <span style="margin-left:3px;">Quote color: <input style="margin-left:18px;" type="text" id="txColorCita" name="colorCita" value='fffda5' disabled/> <input style="margin-left:35px;" id="btSeleccionarColorCita" type="button" class="btStyle" value="Browse..." /><!--Inicio plugin de selección del color, con pre creo el nuevo bloque donde irá --><pre>
+<script type="text/javascript">$('#txColorCita, #btSeleccionarColorCita').ColorPicker({
+            onSubmit: function(hsb, hex, rgb, el) {
+	            $('#txColorCita').val(hex);
+	            $('#txColorCita').ColorPickerHide();
+            },
+            onBeforeShow: function () {
+	            $(this).ColorPickerSetColor(this.value);
+            }
+        })
+        .bind('keyup', function(){
+            $(this).ColorPickerSetColor(this.value);
+        });
+</script></pre><!-- Fin del plugin de selección del color, con pre creo el nuevo bloque donde irá--></span>
+        <!-- Coloco colores predeterminados. -->
+        <span style="margin-left:107px;">
+            <span style="background-color: #FFFDA5;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'fffda5')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFF4CB;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'fff4cb')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFCFA1;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'ffcfa1')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E3FFD0;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'e3ffd0')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFD0DF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'ffd0df')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E2E7FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'e2e7ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FDFFE2;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'fdffe2')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #F8E2FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorCita', 'f8e2ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span><br />
+        <!-- Botón de aceptar -->
+        <input id="btUseCita" type="button" class="btStyle2Action" style="margin-right:22px"; value="OK" onclick="insertCita($('#txColorCita')[0].value, $('input[name=citaTipo]')[0].checked);" />
+        <div class="floatstop"> </div>
+        <br /></div>
+        <!-- Sección Frase Lateral. -->
+        <div class="Section" onclick="toogleDiv('idFraseLateral');">&raquo; LATERAL TEXT</div><br />
+        <div id="idFraseLateral" style="display:none;">
+            <span style="margin-left:3px;">Alignment: 
+                <input type="radio" name="FraseLateralAlign" value="FraseLateralAlignCentro"  checked/>Center. 
+                <input type="radio" name="FraseLateralAlign" value="FraseLateralAlignIzq" />Left. 
+                <input type="radio" name="FraseLateralAlign" value="FraseLateralAlignDer" />Right. </span><br /><br />
+            <span style="margin-left:3px;">Text: <br />
+            <textarea id="idTextoFraseLateral" class="SectionArea"></textarea>
+            </span><br /><br />
+        <input id="btInsertFraseLateral" type="button" class="btStyle2Action" value="OK" onclick="insertFraseLateral($('#idTextoFraseLateral')[0].value);" />
+        <div class="floatstop"> </div>
+        <br /></div>
+        <!-- Sección Youtube. -->
+        <div class="Section" onclick="toogleDiv('idYoutubeInsert');">&raquo; YOUTUBE</div><br />
+        <div id="idYoutubeInsert" style="display:none;">
+            <span style="margin-left:3px;">Alignment: 
+                <input type="radio" name="YoutubeInsertAlign" value="YoutubeInsertAlignCentro"  checked/>Center. 
+                <input type="radio" name="YoutubeInsertAlign" value="YoutubeInsertAlignIzq" />Left. 
+                <input type="radio" name="YoutubeInsertAlign" value="YoutubeInsertAlignDer" />Right. </span><br /><br />
+            <span style="margin-left:3px;">Youtube insert code video: <input type="text" style="margin-left:5px;" id="txYoutubeInsertCode"/></span><br /><br />
+            <span style="margin-left:3px;">Caption: <br />
+            <textarea id="idPieYoutubeInsert" class="SectionArea"></textarea>
+            </span><br /><br />
+        <input id="btYoutubeInsert" type="button" class="btStyle2Action" value="OK" onclick="insertYoutubeCode($('#txYoutubeInsertCode')[0].value, $('#idPieYoutubeInsert')[0].value);" />
+        <div class="floatstop"> </div>
+        <br /></div>
+        <!-- Sección Imagen. -->
+        <div class="Section" onclick="toogleDiv('idImagen');">&raquo; PICTURE</div><br />
+        <div id="idImagen" style="display:none;">
+            <span style="margin-left:3px;">Title image: <input type="text" style="margin-left:3px;" id="txTitleDeImagen" value="" /></span><br /><br />
+            <span style="margin-left:3px;">Alt image: <input type="text" style="margin-left:12px;" id="txAltDeImagen" value="" /></span><br /><br />
+            <span style="margin-left:3px;">Url image: <input type="text" style="margin-left:12px;" id="txUrlImagen" value="http://" /></span><br /><br />
+            <span style="margin-left:3px;">Alignment: 
+                <input type="radio" name="imagenAlign" value="imagenAlignCentro"  checked/>Center. 
+                <input type="radio" name="imagenAlign" value="imagenAlignIzq" />Left. 
+                <input type="radio" name="imagenAlign" value="imagenAlignDer" />Right. </span><br /><br />
+            <span style="margin-left:3px;">Caption: <br />
+            <textarea id="idPieDeFoto" class="SectionArea"></textarea>
+            </span><br /><br />
+        <input id="btInsertFoto" type="button" class="btStyle2Action" value="OK" onclick="insertImagen($('#txTitleDeImagen')[0].value, $('#txAltDeImagen')[0].value, $('#txUrlImagen')[0].value, $('#idPieDeFoto')[0].value);" />
+        <div class="floatstop"> </div>
+        <br /></div>
+        <!-- Sección Lista imágenes. -->
+        <div class="Section" onclick="toogleDiv('idListImagenes');">&raquo; PICTURE LIST</div><br />
+        <div id="idListImagenes" style="display:none;">
+            <!-- Se añade una lista de urls a imágenes y cuando se acepta se muestra en html una lista de las imágenes en chico y una vista principal encima de ellas. Para gestionar las ids a las imágenes se pedirá un título a la lista de imágenes.-->
+            <span style="margin-left:3px;">List title: <input style="margin-left:66px;" type="text" id="txTitleListImages" /></span><br />
+            <span style="margin-left:3px;">Url imagen to add: <input style="margin-left:4px;" type="text" id="txUrlImagenToList" value="http://" /></span><br /><br />
+            <span style="margin-left:3px;">Caption: <br />
+            <textarea id="idPieDeFotoToList" class="SectionArea"></textarea>
+            </span><br /><br />
+            <input id="btInsertFotoToList" type="button" class="btStyle2Action" value="Add to list" onclick="addListImagenes($('#txUrlImagenToList')[0].value, $('#idPieDeFotoToList')[0].value);" />
+        <div class="floatstop"> </div><br />
+            <div id="idListImages" class="PrevToolsEske"></div> <!-- Lista de imágenes en miniatura --><br />
+            <input id="btInsertListFotos" type="button" class="btStyle2Action" value="OK" onclick="insertListImagenes($('#txTitleListImages')[0].value);" />
+        <div class="floatstop"> </div>
+        <br /></div>
+        <!-- Sección zona notas. -->
+        <div class="Section" onclick="toogleDiv('idZonaNotas');">&raquo; NOTE ZONE</div><br />
+        <div id="idZonaNotas" style="display:none;">
+            <span style="margin-left:3px"><input type="checkbox" id="idPasarANotas" /> Replace contains of text between {} in note.</span><br /><br />
+            <span style="margin-left:3px;">Note title: </span> <span style="margin-left:14px;"><input type="text" id="idTituloNota"/></span><br /><br /> 
+            <span style="margin-left:5px">Parse text with notes to text between {}: </span><input id="btImportar" type="button" class="btStyle" style="margin-left:10px;" value="Import" onclick="importarNotas();" /><br /><br />
+            <span style="margin:5px">Background color: <input type="text" id="txColorZonaNota" name="colorZonaNota" style="margin-left:14px;" value='FFD0DF' disabled/> <input id="btSeleccionarColorZonaNota" style="margin-left:20px;" type="button" class="btStyle" value="Browse..." /><!--Inicio plugin de selección del color, con pre creo el nuevo bloque donde irá --><pre>
+<script type="text/javascript">$('#txColorZonaNota, #btSeleccionarColorZonaNota').ColorPicker({
+            onSubmit: function(hsb, hex, rgb, el) {
+                $('#txColorZonaNota').val(hex);
+                $('#txColorZonaNota').ColorPickerHide();
+            },
+            onBeforeShow: function () {
+                $(this).ColorPickerSetColor(this.value);
+            }
+        })
+        .bind('keyup', function(){
+            $(this).ColorPickerSetColor(this.value);
+        });
+
+</script></pre></span><!-- Fin del plugin de selección del color, con pre creo el nuevo bloque donde irá-->
+        <!-- Coloco colores predeterminados. -->
+        <span style="margin-left:115px;">
+            <span style="background-color: #E0F8F7;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'E0F8F7')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFFDA5;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'fffda5')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFF4CB;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'fff4cb')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E3FFD0;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'e3ffd0')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFD0DF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'ffd0df')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E2E7FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'e2e7ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FDFFE2;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'fdffe2')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #F8E2FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', 'f8e2ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="colorSelectorClass" onclick="selectColorInTextInput('#txColorZonaNota', '')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span><br /><br />
+            
+            <fieldset style="margin-left:9px;">
+                <legend align="left">New reference in note</legend>
+                Title: <input type="text" style="margin-left:58px;" id="txTituloNoticiaNota"><br />
+                Link: <input type="text" style="margin-left:58px;" id="txEnlaceNoticiaNota" value="http://"><br />
+                Author: <input type="text" style="margin-left:43px;" id="txAutorNoticiaNota"><br />
+                Media: <input type="text" style="margin-left:47px;" id="txMedioNoticiaNota"><br />
+                Date: <input type="text" style="margin-left:58px;" id="txFechaNoticiaNota">
+                <input id="btGetLinkNoticiaNotas" type="button" style="float:right;" value="Create reference" onclick="insertLinkNoticiaInNotas();" />
+            </fieldset><br /><br />
+        </div>
+    </div>
+    <!-- Zona inferior. Pie de página 1. -->
+    <div class="floatstop"> </div><br />
+    <em>Programmed and designer by Sergio Martín (<a href="https://twitter.com/sermmor" target='_blank'>@sermmor</a>). <a href="http://www.gnu.org/licenses/gpl.html">Licencia GNU GPLv3.</a></em>
+    <div class="floatstop"> </div><br /><hr />
+    <!-- Zona inferior. Vista previa. -->
+    <div id="logoVistaPrevia">Preview</div>
+    <div id="nav2" class="btCargaGuarda">
+        <input id="btActualizarVP" type="button" class="btStyle" value="Reflesh Preview" onclick="actualizarVistaPrevia();" />
+        <input id="btImprimir" type="button" class="btStyle" value="Print" onclick="showImprimirDialog();" />
+        <a id="btVolverAEdicion" class="falsoBoton" href="#">Edit Text</a>
+    </div>
+    <div class="floatstop"> </div><br />
+    <!-- Zona del contenido de la vista previa -->
+    <div id="contentXtenderVistaPrevia"></div>
+    
+    <!-- Zona de herramientas para usar en la vista previa -->
+    <div id="toolsXtenderVistaPrevia"><br /><span style="margin:5px">
+        Underline type: <input type="radio" name="subrayadoVistaPrevia" value="simple" checked /> Simple.
+        <input type="radio" name="subrayadoVistaPrevia" value="color" /> Background color.<br /></span><br />
+        <span style="margin:5px">Background color: <input type="text" id="txColorSubrayadoVP" name="colorSubrayadoVP" style="margin-left:15px;" value='fffda5' disabled/> <input id="btSeleccionarColorVP" type="button" class="btStyle" value="Browse..." /><!--Inicio plugin de selección del color, con pre creo el nuevo bloque donde irá --><pre>
+<script type="text/javascript">$('#txColorSubrayadoVP, #btSeleccionarColorVP').ColorPicker({
+            onSubmit: function(hsb, hex, rgb, el) {
+	            $('#txColorSubrayadoVP').val(hex);
+	            $('#txColorSubrayadoVP').ColorPickerHide();
+            },
+            onBeforeShow: function () {
+	            $(this).ColorPickerSetColor(this.value);
+            }
+        })
+        .bind('keyup', function(){
+            $(this).ColorPickerSetColor(this.value);
+        });
+
+</script></pre></span><!-- Fin del plugin de selección del color, con pre creo el nuevo bloque donde irá-->
+        <!-- Coloco colores predeterminados. -->
+        <span style="margin-left:157px;">
+            <span style="background-color: #FFFDA5;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'fffda5')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFF4CB;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'fff4cb')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFCFA1;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'ffcfa1')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E3FFD0;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'e3ffd0')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FFD0DF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'ffd0df')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #E2E7FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'e2e7ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #FDFFE2;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'fdffe2')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span style="background-color: #F8E2FF;" class="colorSelectorClass" onclick="selectColorInTextInput('#txColorSubrayadoVP', 'f8e2ff')">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </span><br />
+    <span style="margin:5px">Underline preview: </span><br />
+        <div id="PrevToolsVP"><!-- Aquí irá el contenido de la previsualización. --></div> <br />
+        <input id="btSubrayadoVPAceptar" type="button" class="btStyle2Action" onclick="aceptarSubrayadoVP();" value="OK" />
+    </div>
+    
+    <!-- Pie de la página 2. -->
+    <div class="floatstop"> </div><br />
+    <em>Programmed and designer by Sergio Martín (<a href="https://twitter.com/sermmor" target='_blank'>@sermmor</a>). <a href="http://www.gnu.org/licenses/gpl.html">Licencia GNU GPLv3.</a></em>
+</div>
+</body>
+</html>
